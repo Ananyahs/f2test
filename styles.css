@@ -7,7 +7,6 @@
   font-family: "Inter", sans-serif;
 }
 
-:root {
 
 body {
   background-color: var(--body-bg);
@@ -102,7 +101,6 @@ body {
   display: none;
 }
 
-/* Cards Styling Section ----------------------------------------- */
 
 .container_weather-cards {
   display: flex;
@@ -232,4 +230,3 @@ body {
     height: 8vh;
     font-size: 16px;
   }
-}
