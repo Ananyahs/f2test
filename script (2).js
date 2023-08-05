@@ -31,29 +31,21 @@ function createCard(cityData) {
     let temperature = Math.floor(cityData.main.temp);
     let weatherType = cityData.weather[0].main;
     let weatherImgString;
-    if (cityData.weather[0].main == "Clouds") 
-    {
-        weatherImgString = "./assets/Cloudy.png";
-        
+    if (cityData.weather[0].main == "Clouds")  {
+        weatherImgString = "./assets/Cloudy.png"     
     } 
-    if(cityData.weather[0].main == "Clear") 
-    {
+    if(cityData.weather[0].main == "Clear")  {
         weatherImgString = "./assets/Cloudy.png";
-    } 
-    if(cityData.weather[0].main == "Haze") 
+    }   if(cityData.weather[0].main == "Haze") 
     {
         weatherImgString = "./assets/windy.png";
     } 
-    if(cityData.weather[0].main == "Rain") 
-    {
+    if(cityData.weather[0].main == "Rain")   {
         weatherImgString = "./assets/Rainy.png";
-    } 
-    if(cityData.weather[0].main == "Drizzle") 
-    {
+    }   if(cityData.weather[0].main == "Drizzle")   {
         weatherImgString = "./assets/tornado.png";
     } 
-    if (cityData.weather[0].main == "Mist") 
-    {
+    if (cityData.weather[0].main == "Mist")   {
         weatherImgString = "./assets/windy.png";
     }
 
