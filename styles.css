@@ -48,14 +48,14 @@ body {
   gap: 3vh;
 }
 
-.container__title {
+.container_title {
   font-size: 22px;
   margin-top: 3vh;
   margin-bottom: 1vh;
   color: var(--white-clr);
 }
 
-.container__search {
+.container_search {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -63,7 +63,7 @@ body {
   flex-wrap: wrap;
 }
 
-.container__search-input {
+.container_search-input {
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -80,11 +80,11 @@ body {
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
 }
 
-.container__search-input i {
+.container_search-input i {
   fill: var(--label-color-dark-secondary, rgba(235, 235, 245, 0.6));
 }
 
-.container__search-input input {
+.container_search-input input {
   width: 100%;
   border: none;
   outline: none;
@@ -94,7 +94,7 @@ body {
   font-weight: 600;
 }
 
-.container__add-city-btn button {
+.container_add-city-btn button {
   width: 10vw;
   height: 8vh;
   cursor: pointer;
@@ -107,7 +107,7 @@ body {
   transition: all 0.3s ease;
 }
 
-.container__add-city-btn button:hover {
+.container_add-city-btn button:hover {
   scale: 0.98;
 }
 
@@ -121,7 +121,7 @@ body {
 
 /* Cards Styling Section ----------------------------------------- */
 
-.container__weather-cards {
+.container_weather-cards {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -221,16 +221,16 @@ body {
     gap: 3vh;
   }
 
-  .container__title {
+  .container_title {
     font-size: 16px;
     margin-top: 6vh;
   }
 
-  .container__search {
+  .container_search {
     gap: 30px;
   }
 
-  .container__search-input {
+  .container_search-input {
     gap: 10px;
     width: 80vw;
     margin: auto;
@@ -238,13 +238,13 @@ body {
     padding: 4vh 4vw;
   }
 
-  .container__search-input input {
+  .container_search-input input {
     font-size: 16px;
   }
-  .container__add-city-btn {
+  .container_add-city-btn {
     margin: auto;
   }
-  .container__add-city-btn button {
+  .container_add-city-btn button {
     width: 80vw;
     height: 8vh;
     font-size: 16px;
