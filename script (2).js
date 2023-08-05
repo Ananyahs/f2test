@@ -1,9 +1,9 @@
 let currentCardsArr = [];
 
-let searchBtn = document.querySelector(".container__add-city-btn button");
+let searchBtn = document.querySelector(".container_add-city-btn button");
 searchBtn.addEventListener("click", () => {
     let apiKey = "74cb8c6685c9d72c0f8620b6f6f4896c"
-    let inputCityName = document.querySelector(".container__search-input input");
+    let inputCityName = document.querySelector(".container_search-input input");
     getWeatherDetails(apiKey, inputCityName.value.toLocaleLowerCase());
     inputCityName.value = "";
 })
@@ -22,7 +22,7 @@ async function getWeatherDetails(apiKey, cityName) {
     }
 }
 
-let cardsContainer = document.querySelector(".container__weather-cards");
+let cardsContainer = document.querySelector(".container_weather-cards");
 let weatherImg = document.querySelector(".weather-img img")
 function createCard(cityData) {
     let maxTemp = Math.floor(cityData.main.temp_max);
@@ -59,7 +59,7 @@ function createCard(cityData) {
 
     let CardDiv = document.createElement("div");
     CardDiv.classList.add("single-card");
-    CardDiv.classList.add("animate__animated", "animate__fadeIn");
+    CardDiv.classList.add("animate_animated", "animate_fadeIn");
     let cardHtml = `<div class="background-svg">
                         <svg
                         xmlns="http://www.w3.org/2000/svg"
