@@ -8,23 +8,6 @@
 }
 
 :root {
-  --white-clr: #fff;
-  --linear-gr: linear-gradient(136deg, #2e335a 0%, #1c1b33 100%);
-  --body-bg: #2f3144;
-}
-
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--body-bg);
-}
-
-::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 10px;
-}
 
 body {
   background-color: var(--body-bg);
