@@ -1,0 +1,252 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+:root {
+  --white-clr: #fff;
+  --linear-gr: linear-gradient(136deg, #2e335a 0%, #1c1b33 100%);
+  --body-bg: #2f3144;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--body-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+body {
+  background-color: var(--body-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+  margin: auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: center;
+  border-radius: 44px;
+  background: var(--linear-gr);
+  width: 90vw;
+  min-height: 30vh;
+  margin-top: 5vh;
+  gap: 3vh;
+}
+
+.container__title {
+  font-size: 22px;
+  margin-top: 3vh;
+  margin-bottom: 1vh;
+  color: var(--white-clr);
+}
+
+.container__search {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+.container__search-input {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  width: 30vw;
+  height: 5vh;
+  padding: 4vh 4vh;
+  border-radius: 10px;
+  background: linear-gradient(
+    136deg,
+    rgba(46, 51, 90, 0.26) 0%,
+    rgba(28, 27, 51, 0.26) 100%
+  );
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+}
+
+.container__search-input i {
+  fill: var(--label-color-dark-secondary, rgba(235, 235, 245, 0.6));
+}
+
+.container__search-input input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: var(--white-clr);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.container__add-city-btn button {
+  width: 10vw;
+  height: 8vh;
+  cursor: pointer;
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--white-clr);
+  background: rgba(74, 57, 127, 0.7);
+  transition: all 0.3s ease;
+}
+
+.container__add-city-btn button:hover {
+  scale: 0.98;
+}
+
+.error-message {
+  font-size: 14px;
+  z-index: 11;
+  color: var(--white-clr);
+  left: 0;
+  display: none;
+}
+
+/* Cards Styling Section ----------------------------------------- */
+
+.container__weather-cards {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 50px;
+  gap: 20px;
+}
+
+.single-card {
+  width: 345px;
+  height: 240px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.single-card:hover {
+  scale: 1.03;
+}
+
+.background-svg {
+  z-index: 0;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+}
+
+.single-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+.temp {
+  font-size: 45px;
+  color: var(--white-clr);
+  z-index: 10;
+  margin-left: 20px;
+  margin-top: 20px;
+  font-weight: 600;
+}
+
+.weather-img {
+  z-index: 10;
+}
+
+.weather-img img {
+  margin-top: -30px;
+  width: 220px;
+  height: 220px;
+}
+
+.single-card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+.card-bottom-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  margin-left: 20px;
+  margin-top: -20px;
+  z-index: 10;
+}
+
+.atmospheric-pressure {
+  display: flex;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--label-dark-secondary, rgba(235, 235, 245, 0.6));
+}
+.city-name {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--white-clr);
+}
+
+.card-bottom-right {
+  margin-right: 30px;
+  margin-top: 0px;
+  z-index: 10;
+  font-weight: 500;
+  color: var(--white-clr);
+}
+
+@media (max-width: 768px) {
+  .container {
+    border-radius: 24px;
+    width: 100vw;
+    height: 100vh;
+    margin-top: 0vh;
+    gap: 3vh;
+  }
+
+  .container__title {
+    font-size: 16px;
+    margin-top: 6vh;
+  }
+
+  .container__search {
+    gap: 30px;
+  }
+
+  .container__search-input {
+    gap: 10px;
+    width: 80vw;
+    margin: auto;
+    height: 5vh;
+    padding: 4vh 4vw;
+  }
+
+  .container__search-input input {
+    font-size: 16px;
+  }
+  .container__add-city-btn {
+    margin: auto;
+  }
+  .container__add-city-btn button {
+    width: 80vw;
+    height: 8vh;
+    font-size: 16px;
+  }
+}
