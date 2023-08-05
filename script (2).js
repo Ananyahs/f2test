@@ -1,109 +1,110 @@
-let currentCardsArr = [];
+const apiKey = '74cb8c6685c9d72c0f8620b6f6f4896c'; // Replace 'YOUR_API_KEY' with your actual API key
+const apiBaseUrl = 'https://api.openweathermap.org/data/2.5/weather';
 
-let searchBtn = document.querySelector(".container_add-city-btn button");
-searchBtn.addEventListener("click", () => {
-    let apiKey = "74cb8c6685c9d72c0f8620b6f6f4896c"
-    let inputCityName = document.querySelector(".container_search-input input");
-    getWeatherDetails(apiKey, inputCityName.value.toLocaleLowerCase());
-    inputCityName.value = "";
-})
-
-
-let error = document.querySelector(".error-message");
-async function getWeatherDetails(apiKey, cityName) {
-    try{
-    let Url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`
-    let response = await fetch(Url);
-    let data = await response.json();
-    createCard(data);
-    error.style.display = "none";
-    }catch (data) {
-        error.style.display = "block";
-    }
+// Function to fetch weather data from the API
+async function getWeatherData(cityName) {
+    const url = `${apiBaseUrl}?q=${cityName}&appid=${apiKey}&units=metric`;
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
 }
 
-let cardsContainer = document.querySelector(".container_weather-cards");
-let weatherImg = document.querySelector(".weather-img img")
-function createCard(cityData) {
-    let maxTemp = Math.floor(cityData.main.temp_max);
-    let minTemp = Math.floor(cityData.main.temp_min);
-    let cityName = cityData.name;
-    let temperature = Math.floor(cityData.main.temp);
-    let weatherType = cityData.weather[0].main;
-    let weatherImgString;
-    if (cityData.weather[0].main == "Clouds")  {
-        weatherImgString = "./assets/Cloudy.png"     
-    } 
-    if(cityData.weather[0].main == "Clear")  {
-        weatherImgString = "./assets/Cloudy.png";
-    }   if(cityData.weather[0].main == "Haze") 
-    {
-        weatherImgString = "./assets/windy.png";
-    } 
-    if(cityData.weather[0].main == "Rain")   {
-        weatherImgString = "./assets/Rainy.png";
-    }   if(cityData.weather[0].main == "Drizzle")   {
-        weatherImgString = "./assets/tornado.png";
-    } 
-    if (cityData.weather[0].main == "Mist")   {
-        weatherImgString = "./assets/windy.png";
-    }
-
-    let CardDiv = document.createElement("div");
-    CardDiv.classList.add("single-card");
-    CardDiv.classList.add("animate_animated", "animate_fadeIn");
-    let cardHtml = `<div class="background-svg">
-                        <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="343"
-                        height="175"
-                        viewBox="0 0 343 175"
-                        fill="none"
-                        >
-                        <path
-                            d="M0.42749 66.4396C0.42749 31.6455 0.42749 14.2484 11.7535 5.24044C23.0794 -3.76754 40.0301 0.147978 73.9315 7.97901L308.33 62.1238C324.686 65.9018 332.864 67.7909 337.646 73.8031C342.427 79.8154 342.427 88.2086 342.427 104.995V131C342.427 151.742 342.427 162.113 335.984 168.556C329.54 175 319.169 175 298.427 175H44.4275C23.6857 175 13.3148 175 6.87114 168.556C0.42749 162.113 0.42749 151.742 0.42749 131V66.4396Z"
-                            fill="url(#paint0_linear_642_26)"
-                        />
-                        <defs>
-                            <linearGradient
-                            id="paint0_linear_642_26"
-                            x1="0.42749"
-                            y1="128"
-                            x2="354.57"
-                            y2="128"
-                            gradientUnits="userSpaceOnUse"
-                            >
-                            <stop stop-color="#5936B4" />
-                            <stop offset="1" stop-color="#362A84" />
-                            </linearGradient>
-                        </defs>
-                        </svg>
+// Function to add a new city and create a weather card
+function addCityWeatherCard(cityName) {
+    // Fetch weather data for the city
+    getWeatherData(cityName)
+        .then(data => {
+            // Create and display the weather card using the received data
+      
+      
+      
+      let maxTemp = Math.floor(data.main.temp_max);
+    let minTemp = Math.floor(data.main.temp_min);
+    let cityName = data.name;
+    let temperature = Math.floor(data.main.temp);
+    let weatherType = data.weather[0].main;
+      const weatherCardTemplate = `
+                <div class="weather-card">
+                
+                
+                
+                <div class="tempicon">
+                <div class="humidity"><b>${temperature}°</b></div>
+                    <div class="weather-icon">
+                       <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}.png" alt="Weather Icon">
                     </div>
-                    <div class="single-card-top">
-                        <div class="temp">${temperature}°</div>
-                        <div class="weather-img">
-                        <img src="${weatherImgString}" alt="cloudy" />
-                        </div>
+                 </div>
+                 
+                 
+             <div class="lhcontainer">    
+             H: ${maxTemp}&nbsp
+        L: ${minTemp}
+                </div> 
+                 
+                 <br>
+                    <div class="weather-info">
+                   <div class="city-name">${cityName}</div>
+                    <div class="wind"> ${weatherType}</div>
                     </div>
-                    <div class="single-card-bottom">
-                        <div class="card-bottom-left">
-                        <div class="atmospheric-pressure">
-                            <div class="atm-pre-high">H:${maxTemp}</div>
-                            <div class="atm-pre-low">L:${minTemp}</div>
-                        </div>
-                        <div class="city-name">${cityName}</div>
-                        </div>
-                        <div class="card-bottom-right">${weatherType}</div>
-                    </div>`
-             CardDiv.innerHTML = cardHtml;
-             currentCardsArr.push({temperature,CardDiv}); 
-             appendUi(currentCardsArr);  
+                </div>
+            `;
+
+            const weatherCardsContainer = document.getElementById('weatherCardsContainer');
+            weatherCardsContainer.insertAdjacentHTML('beforeend', weatherCardTemplate);
+        })
+        .catch(error => {
+            console.error('Error fetching weather data:', error);
+        });
 }
 
-function appendUi(currentCardsArr) {
-    cardsContainer.innerHTML = "";
-    currentCardsArr.sort((a,b) => a.temperature - b.temperature);
-    currentCardsArr.forEach((card) => {
-        cardsContainer.appendChild(card.CardDiv);
-    })
-}
+const citiesArray = [];
+
+// Set to keep track of added cities
+const citiesSet = new Set();
+
+// Object to store weather data for each city
+const cityData = {};
+
+function handleAddCity() {
+    const cityInput = document.getElementById('cityInput');
+    const cityName = cityInput.value.trim();
+
+    if (cityName !== '') {
+        // Check if the city has already been added (using Set)
+        if (!citiesSet.has(cityName.toLowerCase())) {
+            // Add the city to the Set and the array
+            citiesSet.add(cityName.toLowerCase());
+            citiesArray.push(cityName.toLowerCase());
+
+            // Fetch weather data for the city
+            getWeatherData(cityName)
+                .then(data => {
+                    // Store the weather data in the cityData object
+                    cityData[cityName.toLowerCase()] = data;
+
+                    // Sort the cities by temperature
+                    citiesArray.sort((cityA, cityB) => {
+                        const temperatureA = cityData[cityA]?.main?.temp || 0;
+                        const temperatureB = cityData[cityB]?.main?.temp || 0;
+                        return temperatureA - temperatureB;
+                    });
+
+                      const weatherCardsContainer = document.getElementById('weatherCardsContainer');
+                    weatherCardsContainer.innerHTML = '';
+
+                    // Create and display the weather cards for all cities in the sorted order
+                    citiesArray.forEach(city => {
+                        addCityWeatherCard(city);
+                    });
+
+                    // Clear the input field for the next city entry
+                    cityInput.value = '';
+                })
+                .catch(error => {
+                    console.error('Error fetching weather data:', error);
+                });
+        } else {
+            alert('City already added.');
+        }
+    }
+}document.getElementById('addCityBtn').addEventListener('click', handleAddCity);
