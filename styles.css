@@ -14,7 +14,7 @@ body{
 .input-container>button{
   width:13vw;
   height:30px;
-  border-radius:10px;
+  border-radius:5%;
   }
 
 .weather-card{
